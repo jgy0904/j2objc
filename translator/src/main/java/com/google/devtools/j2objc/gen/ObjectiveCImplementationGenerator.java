@@ -209,8 +209,8 @@ public class ObjectiveCImplementationGenerator extends ObjectiveCSourceFileGener
       printStaticReferencesMethod(node);
       printStaticVars(node);
       printMethods(node);
+      printTypeAnnotationsMethod(node);
       if (TranslationUtil.needsReflection(node)) {
-        printTypeAnnotationsMethod(node);
         printMethodAnnotationMethods(TreeUtil.getMethodDeclarations(node));
         printFieldAnnotationMethods(node);
         printMetadata(node);
@@ -243,8 +243,8 @@ public class ObjectiveCImplementationGenerator extends ObjectiveCSourceFileGener
     printf("  return [IOSClass classWithProtocol:@protocol(%s)];\n", typeName);
     println("}");
     printMethods(methods);
+    printTypeAnnotationsMethod(node);
     if (TranslationUtil.needsReflection(node)) {
-      printTypeAnnotationsMethod(node);
       printMetadata(node);
     }
     println("\n@end");
@@ -445,9 +445,8 @@ public class ObjectiveCImplementationGenerator extends ObjectiveCSourceFileGener
 
     printDeclarations(node.getBodyDeclarations());
     printInitializeMethod(node);
-
+    printTypeAnnotationsMethod(node);
     if (TranslationUtil.needsReflection(node)) {
-      printTypeAnnotationsMethod(node);
       printMetadata(node);
     }
     println("\n@end");

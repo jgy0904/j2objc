@@ -600,7 +600,7 @@ static BOOL hasModifier(IOSClass *cls, int flag) {
 
 - (IOSObjectArray *)getGenericInterfaces {
   return [self getInterfacesWithArrayType:FetchProtocol(@protocol(JavaLangReflectType))];
-}
+} 
 
 - (IOSObjectArray *)getTypeParameters {
   IOSClass *typeVariableClass = [IOSClass

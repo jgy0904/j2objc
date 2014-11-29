@@ -14,7 +14,13 @@
 
 package com.google.devtools.j2objc.translate;
 
+import java.util.List;
+
+import org.eclipse.jdt.core.dom.ITypeBinding;
+import org.eclipse.jdt.core.dom.Modifier;
+
 import com.google.common.collect.ImmutableMap;
+import com.google.devtools.j2objc.Options;
 import com.google.devtools.j2objc.ast.ArrayAccess;
 import com.google.devtools.j2objc.ast.ArrayCreation;
 import com.google.devtools.j2objc.ast.ArrayInitializer;
@@ -39,11 +45,6 @@ import com.google.devtools.j2objc.types.IOSMethod;
 import com.google.devtools.j2objc.types.IOSMethodBinding;
 import com.google.devtools.j2objc.types.IOSTypeBinding;
 import com.google.devtools.j2objc.types.Types;
-
-import org.eclipse.jdt.core.dom.ITypeBinding;
-import org.eclipse.jdt.core.dom.Modifier;
-
-import java.util.List;
 
 /**
  * Rewrites array creation into a method invocation on an IOSArray class.
@@ -145,7 +146,7 @@ public class ArrayRewriter extends TreeVisitor {
   private IOSMethodBinding getInitializeMethod(IOSTypeBinding arrayType, boolean retainedResult) {
     String typeName = arrayType.getName();
     String methodName =
-        retainedResult ? RETAINED_INIT_METHODS.get(typeName) : INIT_METHODS.get(typeName);
+    		(retainedResult || Options.useARC()) ? RETAINED_INIT_METHODS.get(typeName) : INIT_METHODS.get(typeName);
     assert methodName != null;
     IOSMethod iosMethod = IOSMethod.create(typeName + methodName);
     IOSMethodBinding binding = IOSMethodBinding.newMethod(

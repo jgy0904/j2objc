@@ -70,7 +70,6 @@ public class Import implements Comparable<Import> {
       "junit",
       "libcore",
       "org.hamcrest",
-      "org.json",
       "org.junit",
       "org.kxml2",
       "org.mockito",

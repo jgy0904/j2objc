@@ -49,11 +49,7 @@ clean:
 	@cd java_deps && $(MAKE) clean
 	@cd translator && $(MAKE) clean
 	@cd jre_emul && $(MAKE) clean
-	@cd junit && $(MAKE) clean
-	@cd jsr305 && $(MAKE) clean
 	@cd inject/javax_inject && $(MAKE) clean
-	@cd guava && $(MAKE) clean
-	@cd testing/mockito && $(MAKE) clean
 	@cd cycle_finder && $(MAKE) clean
 
 test_translator: annotations_dist java_deps_dist
